@@ -7087,6 +7087,10 @@ bool test_nonce(struct work *work, uint32_t nonce)
     diff1targ = work->pool->algorithm.diff1targ;
   }
 
+  /* Strayacoin: hash is inverted, so invert target for comparison */
+  if (!safe_cmp(work->pool->algorithm.name, "scrypt-inv"))
+    diff1targ = ~diff1targ;
+
   return (le32toh(*hash_32) <= diff1targ);
 }
 

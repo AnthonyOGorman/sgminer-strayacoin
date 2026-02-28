@@ -418,3 +418,14 @@ void scrypt_regenhash(struct work *work)
 	scrypt_n_1_1_256_sp(data, scratchbuf, ohash, work->pool->algorithm.n);
 	flip32(ohash, ohash);
 }
+
+void scrypt_inv_regenhash(struct work *work)
+{
+	scrypt_regenhash(work);
+
+	/* Strayacoin: invert hash */
+	uint32_t *ohash = (uint32_t *)(work->hash);
+	
+	for (int i = 0; i < 8; i++)
+		ohash[i] = ~ohash[i];	
+}

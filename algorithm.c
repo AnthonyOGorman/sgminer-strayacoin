@@ -44,6 +44,7 @@ const char *algorithm_type_str[] = {
   "Unknown",
   "Scrypt",
   "NScrypt",
+  "Scrypt-inv",
   "X11",
   "X13",
   "X14",
@@ -748,6 +749,11 @@ static algorithm_settings_t algos[] = {
   A_SCRYPT("arebyp"),
 #undef A_SCRYPT
 
+#define A_SCRYPT_INV(a) \
+  { a, ALGO_SCRYPT_INV, "", 1, 65536, 65536, 0, 0, 0xFF, 0xFFFFFFFFULL, 0x0000ffffUL, 0, -1, CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE, scrypt_inv_regenhash, queue_scrypt_kernel, gen_hash, append_scrypt_compiler_options }
+  A_SCRYPT_INV("scrypt-inv"),
+#undef A_SCRYPT
+
 #define A_NEOSCRYPT(a) \
   { a, ALGO_NEOSCRYPT, "", 1, 65536, 65536, 0, 0, 0xFF, 0xFFFF000000000000ULL, 0x0000ffffUL, 0, -1, CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE, neoscrypt_regenhash, queue_neoscrypt_kernel, gen_hash, append_neoscrypt_compiler_options }
   A_NEOSCRYPT("neoscrypt"),
@@ -922,6 +928,7 @@ void set_algorithm_nfactor(algorithm_t* algo, const uint8_t nfactor)
   switch (algo->type)
   {
   case ALGO_SCRYPT:
+  case ALGO_SCRYPT_INV:
     //if nfactor isnt 10, switch to NSCRYPT
     if (algo->nfactor != 10)
       algo->type = ALGO_NSCRYPT;

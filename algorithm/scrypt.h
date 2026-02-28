@@ -6,5 +6,6 @@
 /* extern int scrypt_test(unsigned char *pdata, const unsigned char *ptarget, */
 /* 			uint32_t nonce); */
 extern void scrypt_regenhash(struct work *work);
+extern void scrypt_inv_regenhash(struct work *work);
 
 #endif /* SCRYPT_H */
