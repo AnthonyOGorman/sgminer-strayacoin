@@ -1,5 +1,8 @@
-# sgminer
+# sgminer-strayacoin
 
+This is a modified version of sgminer specifically for Strayacoin.
+
+**sgminer-strayacoin implements scrypt-inv, the algorithm used by Strayacoin.**
 
 ## Introduction
 
