@@ -4,6 +4,8 @@ This is a modified version of sgminer specifically for Strayacoin.
 
 **sgminer-strayacoin implements scrypt-inv, the algorithm used by Strayacoin.**
 
+You can find a Strayacoin pool here: https://strayacoin.coinlab.cc/
+
 ## Introduction
 
 This is a multi-threaded multi-pool GPU miner with ATI GPU monitoring,
